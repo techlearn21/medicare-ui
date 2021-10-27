@@ -17,7 +17,7 @@ export class EditCategoryComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params.id;
     this.getCategoryById(this.id);
   }
 

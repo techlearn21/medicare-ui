@@ -21,7 +21,7 @@ export class CategoryListComponent implements OnInit {
   getCategories(): void {
     this.categoryService.getAllCategories().subscribe((data: Category[]) => {
       this.categories = data;
-    })
+    });
   }
 
   updateCategory(id: number): void {

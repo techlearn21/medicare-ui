@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class CategoryService {
 
   baseUrl = 'http://localhost:8081/api/v1/category';
-  categoryList: Category[]
+  categoryList: Category[];
 
   constructor(private http: HttpClient) {}
 
