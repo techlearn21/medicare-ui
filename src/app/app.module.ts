@@ -9,6 +9,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { CategoryListComponent } from './prod/category-list/category-list.component';
 import { AddCategoryComponent } from './prod/add-category/add-category.component';
 import { EditCategoryComponent } from './prod/edit-category/edit-category.component';
+import { ProductListComponent } from './prod/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { EditCategoryComponent } from './prod/edit-category/edit-category.compon
     UserListComponent,
     CategoryListComponent,
     AddCategoryComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
