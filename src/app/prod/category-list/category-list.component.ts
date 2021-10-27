@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Category } from 'src/app/model/category';
 import { CategoryService } from 'src/app/service/category.service';
 

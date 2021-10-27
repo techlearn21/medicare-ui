@@ -1,5 +1,4 @@
 import { CategoryService } from '../../service/category.service';
-import { CategoryListComponent } from '../category-list/category-list.component';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/model/category';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,10 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditCategoryComponent implements OnInit {
 
   id: number;
-  category: Category = new Category;
+  category: Category = new Category();
 
   constructor(private categoryService: CategoryService, private router: Router,
-        private route: ActivatedRoute) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
