@@ -5,6 +5,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductListComponent } from './prod/product-list/product-list.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'user-list', component: UserListComponent},
   {path: 'add-category', component: AddCategoryComponent},
   {path: 'category-list', component: CategoryListComponent},
-  {path: 'edit-category/:id', component: EditCategoryComponent}
+  {path: 'edit-category/:id', component: EditCategoryComponent},
+  {path: 'product-list', component: ProductListComponent}
 ];
 
 @NgModule({

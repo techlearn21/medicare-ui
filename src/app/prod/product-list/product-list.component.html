@@ -1,1 +1,42 @@
-<p>product-list works!</p>
+
+<div class = "container">
+  <div class="card">
+    <h3 class="text-center">Product List</h3>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Code</th>
+          <th>Category</th>
+          <th>Image</th>
+          <th>Seller</th>
+          <th>Enabled</th>
+          <th>Price</th>
+          <th>Quantity Available</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of products">
+            <td> {{ prod.id }} </td>
+            <td> {{ prod.name }} </td>
+            <td> {{ prod.description }} </td>
+            <td> {{ prod.code }} </td>
+            <td> {{ prod.category.name }} </td>
+            <td> {{ prod.imageUrl }} </td>
+            <td> {{ prod.seller }} </td>
+            <td> {{ prod.enabled }} </td>
+            <td> {{ prod.price }} </td>
+            <td> {{ prod.quantityAvailable }} </td>
+
+            <td>
+              <button class="btn btn-info" (click) = updateProduct(prod.id)>Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
