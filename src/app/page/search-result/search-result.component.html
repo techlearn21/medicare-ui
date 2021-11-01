@@ -1,0 +1,236 @@
+<app-search (searchTextChanged) = getSearchText($event)></app-search>
+
+<div class="jumbotron jumbotron-fluid" *ngIf=!searchText>
+  <div class="container">
+    <h1 class="display-4 text-center">Search for Medicines</h1>
+    <p class="lead text-center">Best place to order medicines for all your needs</p>
+    <p class="lead text-center">Home Healthcare, Personal Care, Vitamins, Cold and Flu and much more</p>
+  </div>
+</div>
+
+<div class="text-center" *ngIf=displayMessage>
+  <span>No search results for '{{ searchText }}'. Try searching for another product</span>
+</div>
+
+<div class = "container" *ngIf=displaySearchResults>
+  <div class="card">
+    <h3 class="text-center">Search Results</h3>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Code</th>
+          <th>Category</th>
+          <th>Seller</th>
+          <th>Price</th>
+          <th>Add to Cart</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of products">
+            <td> {{ prod.name }} </td>
+            <td> {{ prod.description }} </td>
+            <td> {{ prod.code }} </td>
+            <td> {{ prod.category.name }} </td>
+            <td> {{ prod.seller }} </td>
+            <td> {{ prod.price | currency}} </td>
+            <td><input type="checkbox" value="{{prod.id}}" [(ngModel)]="prod.selected"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button (click)="addToCart()">Add to Cart</button>
+  </div>
+
+</div>
+
+<div class = "container" *ngIf=displayCart>
+  <div class="card">
+    <h3 class="text-center">Items In Cart</h3>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cItem of cartItems">
+            <td>
+              <h2>{{ cItem.product.name }} </h2>
+              <pre> {{ cItem.product.category.name }} </pre>
+              <pre> Code: {{ cItem.product.code }} </pre>
+              <pre> Sold by: {{ cItem.product.seller }} </pre>
+              <pre> Product Description: {{ cItem.product.description }} </pre>
+            </td>
+            <td> {{ cItem.product.price | currency}} </td>
+            <td>
+                <input type="number" placeholder = "0" [(ngModel)]="cItem.quantity" (change)="onQuantityChange(cItem.product.code)" size='10' min="0">
+            </td>
+            <td> {{ cItem.subTotal | currency}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div style="float:right">
+        <label id = "cartTotal" name = "cartTotal" ><h6>Total: {{this.cartTotal | currency}}</h6></label>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="text-center">
+      <button (click)="addToOrder()">Order</button>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class = "container" *ngIf=displayOrder>
+  <div class="card">
+    <h3 class="text-center">Review Order</h3>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of productsInOrder">
+            <td>
+              <h2>{{ prod.name }} </h2>
+              <pre> {{ prod.category.name }} </pre>
+              <pre> Code: {{ prod.code }} </pre>
+              <pre> Sold by: {{ prod.seller }} </pre>
+              <pre> Product Description: {{ prod.description }} </pre>
+            </td>
+            <td> {{ prod.price | currency}} </td>
+            <td> {{ prod.quantitySelected}} </td>
+            <td> {{ prod.subTotal | currency}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div style="float:right">
+        <label id = "cartTotal" name = "cartTotal" ><h6>Total: {{this.cartTotal | currency}}</h6></label>
+      </div>
+    </div>
+  </div>
+
+    <div class="text-center">
+      <button (click)="goToPayment()">Pay</button>
+    </div>
+
+  </div>
+
+
+
+  <div class = "container" *ngIf=displayPayment>
+    <div class="card">
+      <h3 class="text-center">Submit Payment Details</h3>
+      <div class="card-body">
+        <div class="col-md-5 offset-md-4">
+					<div class="row">
+						<div class="col">
+              <span class="label label-default">Card Holder's name</span>
+            </div>
+					</div>
+					<div class="row">
+						<div class="col"><input type="text" class="form-control" name="name"></div>
+					</div>
+        </div>
+
+        <div class="col-md-5 offset-md-4">
+					<div class="row">
+						<div class="col"><span class="label label-default">Card Number</span></div>
+					</div>
+					<div class="row">
+						<div class="col"><input type="text" class="form-control" name="number"></div>
+					</div>
+        </div>
+
+        <br>
+
+        <div class="col-md-5 offset-md-4">
+					<div class="row">
+						<div class="col"><span class="label label-default">Payment Amount</span></div>
+					</div>
+					<div class="row">
+						<div class="col"><span class="label label-default">{{this.cartTotal | currency}}</span></div>
+					</div>
+        </div>
+      </div>
+    </div>
+
+      <div class="text-center">
+        <button (click)="confirmOrder()">Confirm Order</button>
+      </div>
+
+  </div>
+
+
+  <div class = "container" *ngIf=orderConfirmation>
+    <div class="card">
+      <h3 class="text-center">Order Complete</h3>
+
+      <div class="card-body">
+        <div class="col-md-12">
+					<div class="text-center">
+            <h5 class="text-center">Order Summary</h5>
+          </div>
+          <div class="text-center">
+            <h6 class="text-center">Order Number - 12346546</h6>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="col-md-12">
+					<div class="text-center">
+						<div class="col"><span class="label label-default">Amount Paid: {{this.cartTotal | currency}}</span></div>
+					</div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prod of productsInOrder">
+              <td>
+                <h2>{{ prod.name }} </h2>
+                <pre> {{ prod.category.name }} </pre>
+                <pre> Code: {{ prod.code }} </pre>
+                <pre> Sold by: {{ prod.seller }} </pre>
+                <pre> Product Description: {{ prod.description }} </pre>
+              </td>
+              <td> {{ prod.price | currency}} </td>
+              <td> {{ prod.quantitySelected}} </td>
+              <td> {{ prod.subTotal | currency}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div style="float:right">
+          <label id = "cartTotal" name = "cartTotal" ><h6>Total: {{this.cartTotal | currency}}</h6></label>
+        </div>
+      </div>
+    </div>
+
+  </div>

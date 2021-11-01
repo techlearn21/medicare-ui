@@ -10,6 +10,11 @@ import { CategoryListComponent } from './prod/category-list/category-list.compon
 import { AddCategoryComponent } from './prod/add-category/add-category.component';
 import { EditCategoryComponent } from './prod/edit-category/edit-category.component';
 import { ProductListComponent } from './prod/product-list/product-list.component';
+import { AddProductComponent } from './prod/add-product/add-product.component';
+import { EditProductComponent } from './prod/edit-product/edit-product.component';
+import { NavComponent } from './page/nav/nav.component';
+import { SearchComponent } from './page/search/search.component';
+import { SearchResultComponent } from './page/search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,12 @@ import { ProductListComponent } from './prod/product-list/product-list.component
     CategoryListComponent,
     AddCategoryComponent,
     EditCategoryComponent,
-    ProductListComponent
+    ProductListComponent,
+    AddProductComponent,
+    EditProductComponent,
+    NavComponent,
+    SearchComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,

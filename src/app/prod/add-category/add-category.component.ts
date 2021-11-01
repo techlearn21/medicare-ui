@@ -1,5 +1,4 @@
 import { CategoryService } from './../../service/category.service';
-import { CategoryListComponent } from './../category-list/category-list.component';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/model/category';
 import { Router } from '@angular/router';
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-category.component.css']
 })
 export class AddCategoryComponent implements OnInit {
-  category: Category = new Category;
+  category: Category = new Category();
 
   constructor(private categoryService: CategoryService, private router: Router) { }
 

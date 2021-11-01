@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
   }
 
   updateProduct(id: number): void {
-
+    this.router.navigate(['/edit-product', id]);
   }
 
 }

@@ -1,0 +1,43 @@
+/* div input{
+  border-radius: 10rem 0 0 10rem;
+  border: none;
+  height: 3rem;
+  width: 30rem;
+  background-color: rgb(245, 244, 244);
+  padding: 1.2rem;
+  outline: none;
+}*/
+
+div {
+  border: none
+}
+
+div button{
+  border-radius: 10rem 10rem 10rem 10rem;
+  border: none;
+  opacity: 0.8;
+  outline: none;
+  background-color: rgb(129, 123, 123);
+  color: white;
+  height: 2rem;
+  width: 10rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+div button:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+
+div label{
+  margin-right: 4rem;
+}
+
+input[type='number']{
+  width: 80px;
+}
+
+div.form-group.input{
+  width: 200px;
+}
